@@ -90,6 +90,9 @@ let quizData = [];
 let currentQuizIndex = 0;
 let quizScore = 0;
 let quizType = '';
+let flashcardData = [];
+let currentFlashcardIndex = 0;
+let flashcardType = '';
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -102,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initCategoryButtons();
     initPracticeMode();
     initQuiz();
+    initFlashcards();
 });
 
 // Navigation
@@ -526,6 +530,137 @@ function endQuiz() {
     document.getElementById('quizStart').style.display = 'block';
     document.getElementById('quizGame').style.display = 'none';
     document.getElementById('quizResults').style.display = 'none';
+}
+
+// Flashcards
+function initFlashcards() {
+    document.querySelectorAll('.flashcard-type-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            flashcardType = btn.dataset.type;
+            startFlashcards();
+        });
+    });
+    
+    document.getElementById('flashcardFlipBtn').addEventListener('click', () => {
+        flipFlashcard();
+    });
+    
+    document.getElementById('flashcardPrevBtn').addEventListener('click', () => {
+        navigateFlashcard(-1);
+    });
+    
+    document.getElementById('flashcardNextBtn').addEventListener('click', () => {
+        navigateFlashcard(1);
+    });
+    
+    document.getElementById('flashcardShuffleBtn').addEventListener('click', () => {
+        shuffleFlashcards();
+    });
+    
+    document.getElementById('flashcardExitBtn').addEventListener('click', () => {
+        exitFlashcards();
+    });
+    
+    // Click on flashcard to flip
+    document.getElementById('flashcard').addEventListener('click', () => {
+        flipFlashcard();
+    });
+}
+
+function startFlashcards() {
+    currentFlashcardIndex = 0;
+    
+    // Prepare flashcard data based on type
+    if (flashcardType === 'hiragana') {
+        flashcardData = hiraganaData.map(item => ({
+            front: item.char,
+            back: item.romaji,
+            type: 'character'
+        }));
+    } else if (flashcardType === 'katakana') {
+        flashcardData = katakanaData.map(item => ({
+            front: item.char,
+            back: item.romaji,
+            type: 'character'
+        }));
+    } else if (flashcardType === 'vocabulary') {
+        flashcardData = vocabularyData.map(item => ({
+            front: item.japanese,
+            back: item.english,
+            extra: item.romaji,
+            type: 'vocabulary'
+        }));
+    } else if (flashcardType === 'all') {
+        const hiraCards = hiraganaData.map(item => ({
+            front: item.char,
+            back: item.romaji,
+            type: 'character'
+        }));
+        const kataCards = katakanaData.map(item => ({
+            front: item.char,
+            back: item.romaji,
+            type: 'character'
+        }));
+        const vocabCards = vocabularyData.map(item => ({
+            front: item.japanese,
+            back: item.english,
+            extra: item.romaji,
+            type: 'vocabulary'
+        }));
+        flashcardData = [...hiraCards, ...kataCards, ...vocabCards];
+        shuffleArray(flashcardData);
+    }
+    
+    document.getElementById('flashcardStart').style.display = 'none';
+    document.getElementById('flashcardGame').style.display = 'block';
+    
+    showFlashcard();
+}
+
+function showFlashcard() {
+    const card = flashcardData[currentFlashcardIndex];
+    const flashcardElement = document.getElementById('flashcard');
+    
+    // Remove flipped class to show front
+    flashcardElement.classList.remove('flipped');
+    
+    // Update content
+    document.getElementById('flashcardFront').textContent = card.front;
+    document.getElementById('flashcardBack').textContent = card.back;
+    document.getElementById('flashcardExtra').textContent = card.extra || '';
+    
+    // Update progress
+    document.getElementById('flashcardCurrent').textContent = currentFlashcardIndex + 1;
+    document.getElementById('flashcardTotal').textContent = flashcardData.length;
+    
+    // Update button states
+    document.getElementById('flashcardPrevBtn').disabled = currentFlashcardIndex === 0;
+    document.getElementById('flashcardNextBtn').disabled = currentFlashcardIndex === flashcardData.length - 1;
+}
+
+function flipFlashcard() {
+    const flashcardElement = document.getElementById('flashcard');
+    flashcardElement.classList.toggle('flipped');
+}
+
+function navigateFlashcard(direction) {
+    const newIndex = currentFlashcardIndex + direction;
+    
+    if (newIndex >= 0 && newIndex < flashcardData.length) {
+        currentFlashcardIndex = newIndex;
+        showFlashcard();
+    }
+}
+
+function shuffleFlashcards() {
+    shuffleArray(flashcardData);
+    currentFlashcardIndex = 0;
+    showFlashcard();
+}
+
+function exitFlashcards() {
+    document.getElementById('flashcardStart').style.display = 'block';
+    document.getElementById('flashcardGame').style.display = 'none';
 }
 
 // Utility Functions
