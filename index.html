@@ -173,16 +173,16 @@
                         <div class="flashcard-progress">
                             Card <span id="flashcardCurrent">1</span> of <span id="flashcardTotal">46</span>
                         </div>
-                        <button class="btn btn-outline" id="flashcardShuffleBtn">🔀 Shuffle</button>
+                        <button class="btn btn-outline" id="flashcardShuffleBtn" aria-label="Shuffle flashcards">🔀 Shuffle</button>
                     </div>
 
                     <div class="flashcard-container">
-                        <div class="flashcard" id="flashcard">
-                            <div class="flashcard-front">
+                        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flashcard - click or press Enter to flip">
+                            <div class="flashcard-front" aria-label="Front of flashcard">
                                 <div class="flashcard-content" id="flashcardFront"></div>
                                 <p class="flashcard-hint">Click to flip</p>
                             </div>
-                            <div class="flashcard-back">
+                            <div class="flashcard-back" aria-label="Back of flashcard - answer">
                                 <div class="flashcard-content" id="flashcardBack"></div>
                                 <div class="flashcard-extra" id="flashcardExtra"></div>
                             </div>
@@ -190,9 +190,9 @@
                     </div>
 
                     <div class="flashcard-controls">
-                        <button class="btn btn-secondary" id="flashcardPrevBtn">← Previous</button>
-                        <button class="btn btn-outline" id="flashcardFlipBtn">🔄 Flip Card</button>
-                        <button class="btn btn-secondary" id="flashcardNextBtn">Next →</button>
+                        <button class="btn btn-secondary" id="flashcardPrevBtn" aria-label="Previous flashcard">← Previous</button>
+                        <button class="btn btn-outline" id="flashcardFlipBtn" aria-label="Flip flashcard">🔄 Flip Card</button>
+                        <button class="btn btn-secondary" id="flashcardNextBtn" aria-label="Next flashcard">Next →</button>
                     </div>
 
                     <button class="btn btn-outline" id="flashcardExitBtn">Exit Flashcards</button>

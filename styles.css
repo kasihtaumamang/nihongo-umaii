@@ -233,6 +233,29 @@ body {
     color: var(--light-color);
 }
 
+.btn:disabled,
+.btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--gray-color);
+}
+
+.btn-primary:disabled,
+.btn-primary[disabled] {
+    background: var(--gray-color);
+}
+
+.btn-secondary:disabled,
+.btn-secondary[disabled] {
+    background: var(--gray-color);
+}
+
+.btn-outline:disabled,
+.btn-outline[disabled] {
+    border-color: var(--gray-color);
+    color: var(--gray-color);
+}
+
 /* Practice Mode Buttons */
 .practice-mode {
     display: flex;
@@ -628,6 +651,7 @@ body {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     cursor: pointer;
+    will-change: transform;
 }
 
 .flashcard.flipped {

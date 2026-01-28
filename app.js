@@ -565,6 +565,14 @@ function initFlashcards() {
     document.getElementById('flashcard').addEventListener('click', () => {
         flipFlashcard();
     });
+    
+    // Keyboard support for flashcard
+    document.getElementById('flashcard').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            flipFlashcard();
+        }
+    });
 }
 
 function startFlashcards() {
@@ -618,6 +626,12 @@ function startFlashcards() {
 }
 
 function showFlashcard() {
+    // Guard clause for empty data
+    if (!flashcardData || flashcardData.length === 0 || currentFlashcardIndex >= flashcardData.length) {
+        console.error('No flashcard data available');
+        return;
+    }
+    
     const card = flashcardData[currentFlashcardIndex];
     const flashcardElement = document.getElementById('flashcard');
     
