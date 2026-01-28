@@ -97,6 +97,7 @@ let flashcardData = [];
 let currentFlashcardIndex = 0;
 let flashcardType = '';
 let flashcardLevel = 'all';
+let customQuestions = [];
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -111,6 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initPracticeMode();
     initQuiz();
     initFlashcards();
+    initCustomQuiz();
+    loadCustomQuestions();
 });
 
 // Navigation
@@ -469,6 +472,11 @@ function startQuiz() {
         const vocabQuiz = generateVocabularyQuiz(4);
         quizData = [...hiraQuiz, ...kataQuiz, ...vocabQuiz];
         shuffleArray(quizData);
+    } else if (quizType === 'custom') {
+        quizData = generateCustomQuiz();
+        if (quizData.length === 0) {
+            return; // Alert already shown in generateCustomQuiz
+        }
     }
     
     document.getElementById('quizStart').style.display = 'none';
@@ -819,4 +827,155 @@ function updateStats() {
     
     const bestScore = localStorage.getItem('bestQuizScore') || 0;
     document.getElementById('quizScore').textContent = bestScore + '%';
+}
+
+// Custom Quiz Functions
+function loadCustomQuestions() {
+    const saved = localStorage.getItem('customQuestions');
+    if (saved) {
+        customQuestions = JSON.parse(saved);
+    }
+    updateCustomQuestionsList();
+}
+
+function saveCustomQuestions() {
+    localStorage.setItem('customQuestions', JSON.stringify(customQuestions));
+    updateCustomQuestionsList();
+}
+
+function initCustomQuiz() {
+    // Show/hide custom quiz creator
+    const createBtn = document.getElementById('showCustomQuizCreator');
+    const manageBtn = document.getElementById('showCustomQuizManager');
+    const creatorSection = document.getElementById('customQuizCreator');
+    const managerSection = document.getElementById('customQuizManager');
+    
+    if (createBtn) {
+        createBtn.addEventListener('click', () => {
+            creatorSection.style.display = creatorSection.style.display === 'none' ? 'block' : 'none';
+            managerSection.style.display = 'none';
+        });
+    }
+    
+    if (manageBtn) {
+        manageBtn.addEventListener('click', () => {
+            managerSection.style.display = managerSection.style.display === 'none' ? 'block' : 'none';
+            creatorSection.style.display = 'none';
+            updateCustomQuestionsList();
+        });
+    }
+    
+    // Add custom question form submission
+    const form = document.getElementById('customQuestionForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addCustomQuestion();
+        });
+    }
+}
+
+function addCustomQuestion() {
+    const question = document.getElementById('customQuestion').value.trim();
+    const option1 = document.getElementById('customOption1').value.trim();
+    const option2 = document.getElementById('customOption2').value.trim();
+    const option3 = document.getElementById('customOption3').value.trim();
+    const option4 = document.getElementById('customOption4').value.trim();
+    const correctAnswer = document.querySelector('input[name="correctAnswer"]:checked');
+    const category = document.getElementById('customCategory').value.trim() || 'Custom';
+    
+    if (!question || !option1 || !option2 || !option3 || !option4 || !correctAnswer) {
+        alert('Please fill in all fields and select the correct answer!');
+        return;
+    }
+    
+    const options = [option1, option2, option3, option4];
+    const correctIndex = parseInt(correctAnswer.value);
+    
+    const newQuestion = {
+        id: Date.now(),
+        question: question,
+        options: options,
+        correct: options[correctIndex],
+        category: category
+    };
+    
+    customQuestions.push(newQuestion);
+    saveCustomQuestions();
+    
+    // Clear form
+    document.getElementById('customQuestionForm').reset();
+    
+    alert('Question added successfully!');
+}
+
+function updateCustomQuestionsList() {
+    const list = document.getElementById('customQuestionsList');
+    if (!list) return;
+    
+    list.innerHTML = '';
+    
+    if (customQuestions.length === 0) {
+        list.innerHTML = '<p class="no-questions">No custom questions yet. Create your first question!</p>';
+        return;
+    }
+    
+    customQuestions.forEach((q, index) => {
+        const item = document.createElement('div');
+        item.className = 'custom-question-item';
+        item.innerHTML = `
+            <div class="question-content">
+                <strong>Q${index + 1}:</strong> ${q.question}
+                <br><span class="question-category">${q.category}</span>
+            </div>
+            <div class="question-actions">
+                <button class="btn btn-outline btn-sm" onclick="editCustomQuestion(${q.id})">Edit</button>
+                <button class="btn btn-outline btn-sm" onclick="deleteCustomQuestion(${q.id})">Delete</button>
+            </div>
+        `;
+        list.appendChild(item);
+    });
+}
+
+function deleteCustomQuestion(id) {
+    if (!confirm('Are you sure you want to delete this question?')) return;
+    
+    customQuestions = customQuestions.filter(q => q.id !== id);
+    saveCustomQuestions();
+}
+
+function editCustomQuestion(id) {
+    const question = customQuestions.find(q => q.id === id);
+    if (!question) return;
+    
+    // Fill the form with existing data
+    document.getElementById('customQuestion').value = question.question;
+    document.getElementById('customOption1').value = question.options[0];
+    document.getElementById('customOption2').value = question.options[1];
+    document.getElementById('customOption3').value = question.options[2];
+    document.getElementById('customOption4').value = question.options[3];
+    document.getElementById('customCategory').value = question.category;
+    
+    // Check the correct answer radio button
+    const correctIndex = question.options.indexOf(question.correct);
+    document.querySelector(`input[name="correctAnswer"][value="${correctIndex}"]`).checked = true;
+    
+    // Delete the old question and show creator
+    customQuestions = customQuestions.filter(q => q.id !== id);
+    saveCustomQuestions();
+    
+    document.getElementById('customQuizCreator').style.display = 'block';
+    document.getElementById('customQuizManager').style.display = 'none';
+    
+    alert('Edit the question and click "Add Question" to save changes.');
+}
+
+function generateCustomQuiz() {
+    if (customQuestions.length < 4) {
+        alert('You need at least 4 custom questions to start a quiz!');
+        return [];
+    }
+    
+    const shuffled = [...customQuestions].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, Math.min(10, shuffled.length));
 }
