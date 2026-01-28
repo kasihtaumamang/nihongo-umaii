@@ -97,6 +97,7 @@ let flashcardType = '';
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initThemeToggle();
     loadProgress();
     updateStats();
     loadHiragana();
@@ -127,6 +128,37 @@ function initNavigation() {
     
     mobileMenuToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
+    });
+}
+
+// Theme Toggle
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+    
+    if (!themeToggle || !themeIcon) {
+        console.warn('Theme toggle elements not found');
+        return;
+    }
+    
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeIcon.textContent = '☀️';
+    }
+    
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        // Update icon and save preference
+        if (document.body.classList.contains('dark-mode')) {
+            themeIcon.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeIcon.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
     });
 }
 
