@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihongo Mantappu - Learn Japanese</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🇯🇵 Nihongo Mantappu</h1>
+            </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#hiragana" class="nav-link">Hiragana</a></li>
+                <li><a href="#katakana" class="nav-link">Katakana</a></li>
+                <li><a href="#vocabulary" class="nav-link">Vocabulary</a></li>
+                <li><a href="#flashcards" class="nav-link">Flashcards</a></li>
+                <li><a href="#quiz" class="nav-link">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h2 class="hero-title">Welcome to Nihongo Mantappu!</h2>
+                    <p class="hero-subtitle">Your Complete Japanese Learning Platform</p>
+                    <div class="hero-description">
+                        <p>Start your journey to master Japanese with our comprehensive learning modules:</p>
+                        <ul class="feature-list">
+                            <li>📝 Learn Hiragana and Katakana</li>
+                            <li>📚 Build your vocabulary</li>
+                            <li>🃏 Study with interactive flashcards</li>
+                            <li>🎯 Practice with interactive quizzes</li>
+                            <li>📊 Track your progress</li>
+                        </ul>
+                    </div>
+                    <div class="cta-buttons">
+                        <button class="btn btn-primary" onclick="navigateTo('hiragana')">Start Learning</button>
+                        <button class="btn btn-secondary" onclick="navigateTo('quiz')">Take a Quiz</button>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="hiraganaProgress">0</div>
+                        <div class="stat-label">Hiragana Learned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="katakanaProgress">0</div>
+                        <div class="stat-label">Katakana Learned</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="vocabProgress">0</div>
+                        <div class="stat-label">Vocabulary Words</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="quizScore">0</div>
+                        <div class="stat-label">Quiz Score</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hiragana Section -->
+        <section id="hiragana" class="section">
+            <div class="container">
+                <h2 class="section-title">Learn Hiragana</h2>
+                <p class="section-description">Hiragana is one of the three Japanese writing systems. Master all 46 basic characters!</p>
+                
+                <div class="practice-mode">
+                    <button class="btn btn-secondary" id="hiraganaStudyMode">Study Mode</button>
+                    <button class="btn btn-outline" id="hiraganaPracticeMode">Practice Mode</button>
+                </div>
+
+                <div id="hiraganaContent" class="character-grid">
+                    <!-- Characters will be loaded by JavaScript -->
+                </div>
+
+                <div id="hiraganaPractice" class="practice-area" style="display: none;">
+                    <div class="practice-card">
+                        <h3>Practice Hiragana</h3>
+                        <div class="practice-character" id="hiraganaChar"></div>
+                        <input type="text" id="hiraganaInput" placeholder="Type the romaji..." class="practice-input">
+                        <div class="practice-buttons">
+                            <button class="btn btn-primary" id="hiraganaCheckBtn">Check</button>
+                            <button class="btn btn-secondary" id="hiraganaNextBtn">Next</button>
+                        </div>
+                        <div class="practice-result" id="hiraganaResult"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Katakana Section -->
+        <section id="katakana" class="section">
+            <div class="container">
+                <h2 class="section-title">Learn Katakana</h2>
+                <p class="section-description">Katakana is used for foreign words and names. Learn all 46 basic characters!</p>
+                
+                <div class="practice-mode">
+                    <button class="btn btn-secondary" id="katakanaStudyMode">Study Mode</button>
+                    <button class="btn btn-outline" id="katakanaPracticeMode">Practice Mode</button>
+                </div>
+
+                <div id="katakanaContent" class="character-grid">
+                    <!-- Characters will be loaded by JavaScript -->
+                </div>
+
+                <div id="katakanaPractice" class="practice-area" style="display: none;">
+                    <div class="practice-card">
+                        <h3>Practice Katakana</h3>
+                        <div class="practice-character" id="katakanaChar"></div>
+                        <input type="text" id="katakanaInput" placeholder="Type the romaji..." class="practice-input">
+                        <div class="practice-buttons">
+                            <button class="btn btn-primary" id="katakanaCheckBtn">Check</button>
+                            <button class="btn btn-secondary" id="katakanaNextBtn">Next</button>
+                        </div>
+                        <div class="practice-result" id="katakanaResult"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vocabulary Section -->
+        <section id="vocabulary" class="section">
+            <div class="container">
+                <h2 class="section-title">Japanese Vocabulary</h2>
+                <p class="section-description">Build your vocabulary with common Japanese words and phrases!</p>
+                
+                <div class="vocab-categories">
+                    <button class="btn btn-outline category-btn active" data-category="all">All</button>
+                    <button class="btn btn-outline category-btn" data-category="greetings">Greetings</button>
+                    <button class="btn btn-outline category-btn" data-category="numbers">Numbers</button>
+                    <button class="btn btn-outline category-btn" data-category="colors">Colors</button>
+                    <button class="btn btn-outline category-btn" data-category="family">Family</button>
+                    <button class="btn btn-outline category-btn" data-category="food">Food</button>
+                </div>
+
+                <div id="vocabularyContent" class="vocab-grid">
+                    <!-- Vocabulary cards will be loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Flashcards Section -->
+        <section id="flashcards" class="section">
+            <div class="container">
+                <h2 class="section-title">Flashcards</h2>
+                <p class="section-description">Study Japanese with interactive flashcards. Click to flip and see the answer!</p>
+                
+                <div id="flashcardStart" class="flashcard-start">
+                    <div class="flashcard-type-selection">
+                        <h3>Select Flashcard Type:</h3>
+                        <button class="btn btn-primary flashcard-type-btn" data-type="hiragana">Hiragana Flashcards</button>
+                        <button class="btn btn-primary flashcard-type-btn" data-type="katakana">Katakana Flashcards</button>
+                        <button class="btn btn-primary flashcard-type-btn" data-type="vocabulary">Vocabulary Flashcards</button>
+                        <button class="btn btn-primary flashcard-type-btn" data-type="all">All Mixed</button>
+                    </div>
+                </div>
+
+                <div id="flashcardGame" class="flashcard-game" style="display: none;">
+                    <div class="flashcard-header">
+                        <div class="flashcard-progress">
+                            Card <span id="flashcardCurrent">1</span> of <span id="flashcardTotal">46</span>
+                        </div>
+                        <button class="btn btn-outline" id="flashcardShuffleBtn" aria-label="Shuffle flashcards">🔀 Shuffle</button>
+                    </div>
+
+                    <div class="flashcard-container">
+                        <div class="flashcard" id="flashcard" tabindex="0" role="button" aria-label="Flashcard - click or press Enter to flip">
+                            <div class="flashcard-front" aria-label="Front of flashcard">
+                                <div class="flashcard-content" id="flashcardFront"></div>
+                                <p class="flashcard-hint">Click to flip</p>
+                            </div>
+                            <div class="flashcard-back" aria-label="Back of flashcard - answer">
+                                <div class="flashcard-content" id="flashcardBack"></div>
+                                <div class="flashcard-extra" id="flashcardExtra"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-controls">
+                        <button class="btn btn-secondary" id="flashcardPrevBtn" aria-label="Previous flashcard">← Previous</button>
+                        <button class="btn btn-outline" id="flashcardFlipBtn" aria-label="Flip flashcard">🔄 Flip Card</button>
+                        <button class="btn btn-secondary" id="flashcardNextBtn" aria-label="Next flashcard">Next →</button>
+                    </div>
+
+                    <button class="btn btn-outline" id="flashcardExitBtn">Exit Flashcards</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="section">
+            <div class="container">
+                <h2 class="section-title">Test Your Knowledge</h2>
+                <p class="section-description">Challenge yourself with our interactive quizzes!</p>
+                
+                <div id="quizStart" class="quiz-start">
+                    <div class="quiz-options">
+                        <h3>Select Quiz Type:</h3>
+                        <button class="btn btn-primary quiz-type-btn" data-type="hiragana">Hiragana Quiz</button>
+                        <button class="btn btn-primary quiz-type-btn" data-type="katakana">Katakana Quiz</button>
+                        <button class="btn btn-primary quiz-type-btn" data-type="vocabulary">Vocabulary Quiz</button>
+                        <button class="btn btn-primary quiz-type-btn" data-type="mixed">Mixed Quiz</button>
+                    </div>
+                </div>
+
+                <div id="quizGame" class="quiz-game" style="display: none;">
+                    <div class="quiz-header">
+                        <div class="quiz-progress">
+                            Question <span id="quizCurrentQuestion">1</span> of <span id="quizTotalQuestions">10</span>
+                        </div>
+                        <div class="quiz-score-display">
+                            Score: <span id="quizCurrentScore">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question-card">
+                        <div class="quiz-question" id="quizQuestion"></div>
+                        <div class="quiz-answer-options" id="quizOptions">
+                            <!-- Options will be loaded by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-secondary" id="quizQuitBtn">Quit Quiz</button>
+                </div>
+
+                <div id="quizResults" class="quiz-results" style="display: none;">
+                    <h3>Quiz Complete!</h3>
+                    <div class="results-score">
+                        <div class="score-circle">
+                            <span id="finalScore">0</span>%
+                        </div>
+                    </div>
+                    <p class="results-message" id="resultsMessage"></p>
+                    <div class="results-buttons">
+                        <button class="btn btn-primary" id="quizRetryBtn">Try Again</button>
+                        <button class="btn btn-secondary" onclick="navigateTo('home')">Back to Home</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Nihongo Mantappu. Built with ❤️ for Japanese learners.</p>
+            <p>がんばってください！(Ganbatte kudasai! - Good luck!)</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
