@@ -98,6 +98,7 @@ let currentFlashcardIndex = 0;
 let flashcardType = '';
 let flashcardLevel = 'all';
 let customQuestions = [];
+let editingQuestionId = null;
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -831,16 +832,31 @@ function updateStats() {
 
 // Custom Quiz Functions
 function loadCustomQuestions() {
-    const saved = localStorage.getItem('customQuestions');
-    if (saved) {
-        customQuestions = JSON.parse(saved);
+    try {
+        const saved = localStorage.getItem('customQuestions');
+        if (saved) {
+            customQuestions = JSON.parse(saved);
+        }
+    } catch (error) {
+        console.error('Error loading custom questions:', error);
+        alert('Unable to load custom questions. Please check your browser settings.');
+        customQuestions = [];
     }
     updateCustomQuestionsList();
 }
 
 function saveCustomQuestions() {
-    localStorage.setItem('customQuestions', JSON.stringify(customQuestions));
-    updateCustomQuestionsList();
+    try {
+        localStorage.setItem('customQuestions', JSON.stringify(customQuestions));
+        updateCustomQuestionsList();
+    } catch (error) {
+        console.error('Error saving custom questions:', error);
+        if (error.name === 'QuotaExceededError') {
+            alert('Storage limit exceeded. Please delete some questions.');
+        } else {
+            alert('Unable to save questions. Please check your browser settings.');
+        }
+    }
 }
 
 function initCustomQuiz() {
@@ -889,11 +905,44 @@ function addCustomQuestion() {
         return;
     }
     
+    // Validate input lengths
+    if (question.length > 200) {
+        alert('Question text is too long (max 200 characters)');
+        return;
+    }
+    
+    if (category.length > 50) {
+        alert('Category name is too long (max 50 characters)');
+        return;
+    }
+    
     const options = [option1, option2, option3, option4];
+    
+    // Check for duplicate options
+    const uniqueOptions = new Set(options.map(opt => opt.toLowerCase()));
+    if (uniqueOptions.size < options.length) {
+        alert('All answer options must be unique!');
+        return;
+    }
+    
+    // Validate option lengths
+    for (let opt of options) {
+        if (opt.length > 100) {
+            alert('Answer options are too long (max 100 characters each)');
+            return;
+        }
+    }
+    
     const correctIndex = parseInt(correctAnswer.value);
     
+    // If editing, remove the old question first
+    if (editingQuestionId) {
+        customQuestions = customQuestions.filter(q => q.id !== editingQuestionId);
+    }
+    
+    // Generate more robust ID (use existing ID if editing)
     const newQuestion = {
-        id: Date.now(),
+        id: editingQuestionId || (Date.now() + '-' + Math.random().toString(36).substr(2, 9)),
         question: question,
         options: options,
         correct: options[correctIndex],
@@ -903,10 +952,15 @@ function addCustomQuestion() {
     customQuestions.push(newQuestion);
     saveCustomQuestions();
     
-    // Clear form
+    // Clear form and reset edit state
     document.getElementById('customQuestionForm').reset();
+    editingQuestionId = null;
     
-    alert('Question added successfully!');
+    // Reset button text
+    const submitBtn = document.querySelector('#customQuestionForm button[type="submit"]');
+    submitBtn.textContent = 'Add Question';
+    
+    alert(editingQuestionId ? 'Question updated successfully!' : 'Question added successfully!');
 }
 
 function updateCustomQuestionsList() {
@@ -923,16 +977,42 @@ function updateCustomQuestionsList() {
     customQuestions.forEach((q, index) => {
         const item = document.createElement('div');
         item.className = 'custom-question-item';
-        item.innerHTML = `
-            <div class="question-content">
-                <strong>Q${index + 1}:</strong> ${q.question}
-                <br><span class="question-category">${q.category}</span>
-            </div>
-            <div class="question-actions">
-                <button class="btn btn-outline btn-sm" onclick="editCustomQuestion(${q.id})">Edit</button>
-                <button class="btn btn-outline btn-sm" onclick="deleteCustomQuestion(${q.id})">Delete</button>
-            </div>
-        `;
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'question-content';
+        
+        const questionLabel = document.createElement('strong');
+        questionLabel.textContent = `Q${index + 1}: `;
+        
+        const questionText = document.createTextNode(q.question);
+        
+        const categorySpan = document.createElement('span');
+        categorySpan.className = 'question-category';
+        categorySpan.textContent = q.category;
+        
+        contentDiv.appendChild(questionLabel);
+        contentDiv.appendChild(questionText);
+        contentDiv.appendChild(document.createElement('br'));
+        contentDiv.appendChild(categorySpan);
+        
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'question-actions';
+        
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-outline btn-sm';
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click', () => editCustomQuestion(q.id));
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-outline btn-sm';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => deleteCustomQuestion(q.id));
+        
+        actionsDiv.appendChild(editBtn);
+        actionsDiv.appendChild(deleteBtn);
+        
+        item.appendChild(contentDiv);
+        item.appendChild(actionsDiv);
         list.appendChild(item);
     });
 }
@@ -948,6 +1028,9 @@ function editCustomQuestion(id) {
     const question = customQuestions.find(q => q.id === id);
     if (!question) return;
     
+    // Store the ID we're editing
+    editingQuestionId = id;
+    
     // Fill the form with existing data
     document.getElementById('customQuestion').value = question.question;
     document.getElementById('customOption1').value = question.options[0];
@@ -960,14 +1043,16 @@ function editCustomQuestion(id) {
     const correctIndex = question.options.indexOf(question.correct);
     document.querySelector(`input[name="correctAnswer"][value="${correctIndex}"]`).checked = true;
     
-    // Delete the old question and show creator
-    customQuestions = customQuestions.filter(q => q.id !== id);
-    saveCustomQuestions();
-    
+    // Show creator and hide manager
     document.getElementById('customQuizCreator').style.display = 'block';
     document.getElementById('customQuizManager').style.display = 'none';
     
-    alert('Edit the question and click "Add Question" to save changes.');
+    // Update button text
+    const submitBtn = document.querySelector('#customQuestionForm button[type="submit"]');
+    submitBtn.textContent = 'Update Question';
+    
+    // Scroll to form
+    document.getElementById('customQuizCreator').scrollIntoView({ behavior: 'smooth' });
 }
 
 function generateCustomQuiz() {

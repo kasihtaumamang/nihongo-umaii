@@ -268,33 +268,33 @@
                         <form id="customQuestionForm">
                             <div class="form-group">
                                 <label for="customQuestion">Question:</label>
-                                <input type="text" id="customQuestion" class="form-input" placeholder="Enter your question" required>
+                                <input type="text" id="customQuestion" class="form-input" placeholder="Enter your question" maxlength="200" required>
                             </div>
                             
                             <div class="form-group">
                                 <label>Answer Options:</label>
                                 <div class="option-group">
                                     <input type="radio" name="correctAnswer" value="0" id="correct0" required>
-                                    <input type="text" id="customOption1" class="form-input" placeholder="Option 1" required>
+                                    <input type="text" id="customOption1" class="form-input" placeholder="Option 1" maxlength="100" required>
                                 </div>
                                 <div class="option-group">
                                     <input type="radio" name="correctAnswer" value="1" id="correct1" required>
-                                    <input type="text" id="customOption2" class="form-input" placeholder="Option 2" required>
+                                    <input type="text" id="customOption2" class="form-input" placeholder="Option 2" maxlength="100" required>
                                 </div>
                                 <div class="option-group">
                                     <input type="radio" name="correctAnswer" value="2" id="correct2" required>
-                                    <input type="text" id="customOption3" class="form-input" placeholder="Option 3" required>
+                                    <input type="text" id="customOption3" class="form-input" placeholder="Option 3" maxlength="100" required>
                                 </div>
                                 <div class="option-group">
                                     <input type="radio" name="correctAnswer" value="3" id="correct3" required>
-                                    <input type="text" id="customOption4" class="form-input" placeholder="Option 4" required>
+                                    <input type="text" id="customOption4" class="form-input" placeholder="Option 4" maxlength="100" required>
                                 </div>
                                 <p class="form-hint">Select the radio button next to the correct answer</p>
                             </div>
                             
                             <div class="form-group">
                                 <label for="customCategory">Category (optional):</label>
-                                <input type="text" id="customCategory" class="form-input" placeholder="e.g., Grammar, Kanji, etc.">
+                                <input type="text" id="customCategory" class="form-input" placeholder="e.g., Grammar, Kanji, etc." maxlength="50">
                             </div>
                             
                             <button type="submit" class="btn btn-primary">Add Question</button>
