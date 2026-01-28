@@ -142,13 +142,26 @@
                 <h2 class="section-title">Japanese Vocabulary</h2>
                 <p class="section-description">Build your vocabulary with common Japanese words and phrases!</p>
                 
-                <div class="vocab-categories">
-                    <button class="btn btn-outline category-btn active" data-category="all">All</button>
-                    <button class="btn btn-outline category-btn" data-category="greetings">Greetings</button>
-                    <button class="btn btn-outline category-btn" data-category="numbers">Numbers</button>
-                    <button class="btn btn-outline category-btn" data-category="colors">Colors</button>
-                    <button class="btn btn-outline category-btn" data-category="family">Family</button>
-                    <button class="btn btn-outline category-btn" data-category="food">Food</button>
+                <div class="vocab-filters">
+                    <div class="vocab-categories">
+                        <h3>Category:</h3>
+                        <button class="btn btn-outline category-btn active" data-category="all">All</button>
+                        <button class="btn btn-outline category-btn" data-category="greetings">Greetings</button>
+                        <button class="btn btn-outline category-btn" data-category="numbers">Numbers</button>
+                        <button class="btn btn-outline category-btn" data-category="colors">Colors</button>
+                        <button class="btn btn-outline category-btn" data-category="family">Family</button>
+                        <button class="btn btn-outline category-btn" data-category="food">Food</button>
+                    </div>
+                    
+                    <div class="vocab-levels">
+                        <h3>JLPT Level:</h3>
+                        <button class="btn btn-outline level-btn active" data-level="all">All Levels</button>
+                        <button class="btn btn-outline level-btn" data-level="N5">N5</button>
+                        <button class="btn btn-outline level-btn" data-level="N4">N4</button>
+                        <button class="btn btn-outline level-btn" data-level="N3">N3</button>
+                        <button class="btn btn-outline level-btn" data-level="N2">N2</button>
+                        <button class="btn btn-outline level-btn" data-level="N1">N1</button>
+                    </div>
                 </div>
 
                 <div id="vocabularyContent" class="vocab-grid">
@@ -170,6 +183,17 @@
                         <button class="btn btn-primary flashcard-type-btn" data-type="katakana">Katakana Flashcards</button>
                         <button class="btn btn-primary flashcard-type-btn" data-type="vocabulary">Vocabulary Flashcards</button>
                         <button class="btn btn-primary flashcard-type-btn" data-type="all">All Mixed</button>
+                    </div>
+                    <div class="flashcard-level-selection">
+                        <h3>Select JLPT Level (for Vocabulary):</h3>
+                        <div class="level-buttons">
+                            <button class="btn btn-outline flashcard-level-btn active" data-level="all">All Levels</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N5">N5</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N4">N4</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N3">N3</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N2">N2</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N1">N1</button>
+                        </div>
                     </div>
                 </div>
 

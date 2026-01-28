@@ -91,9 +91,12 @@ let currentQuizIndex = 0;
 let quizScore = 0;
 let quizType = '';
 let quizLevel = 'all';
+let vocabularyLevel = 'all';
+let vocabularyCategory = 'all';
 let flashcardData = [];
 let currentFlashcardIndex = 0;
 let flashcardType = '';
+let flashcardLevel = 'all';
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -342,13 +345,24 @@ function checkPracticeAnswer(type) {
 }
 
 // Vocabulary
-function loadVocabulary(category = 'all') {
+function loadVocabulary(category = null, level = null) {
+    // Use stored values if not provided
+    if (category !== null) vocabularyCategory = category;
+    if (level !== null) vocabularyLevel = level;
+    
     const container = document.getElementById('vocabularyContent');
     container.innerHTML = '';
     
-    const filteredVocab = category === 'all' 
-        ? vocabularyData 
-        : vocabularyData.filter(item => item.category === category);
+    // Filter by both category and level
+    let filteredVocab = vocabularyData;
+    
+    if (vocabularyCategory !== 'all') {
+        filteredVocab = filteredVocab.filter(item => item.category === vocabularyCategory);
+    }
+    
+    if (vocabularyLevel !== 'all') {
+        filteredVocab = filteredVocab.filter(item => item.level === vocabularyLevel);
+    }
     
     filteredVocab.forEach(item => {
         const card = document.createElement('div');
@@ -358,6 +372,7 @@ function loadVocabulary(category = 'all') {
             <div class="vocab-romaji">${item.romaji}</div>
             <div class="vocab-english">${item.english}</div>
             <div class="vocab-category">${item.category}</div>
+            <div class="vocab-level">${item.level}</div>
         `;
         container.appendChild(card);
     });
@@ -365,7 +380,15 @@ function loadVocabulary(category = 'all') {
     // Update category buttons
     document.querySelectorAll('.category-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.dataset.category === category) {
+        if (btn.dataset.category === vocabularyCategory) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update level buttons
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.level === vocabularyLevel) {
             btn.classList.add('active');
         }
     });
@@ -375,7 +398,13 @@ function loadVocabulary(category = 'all') {
 function initCategoryButtons() {
     document.querySelectorAll('.category-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            loadVocabulary(btn.dataset.category);
+            loadVocabulary(btn.dataset.category, null);
+        });
+    });
+    
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            loadVocabulary(null, btn.dataset.level);
         });
     });
 }
@@ -595,6 +624,15 @@ function initFlashcards() {
         });
     });
     
+    document.querySelectorAll('.flashcard-level-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            flashcardLevel = btn.dataset.level;
+            // Update active state
+            document.querySelectorAll('.flashcard-level-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+    
     document.getElementById('flashcardFlipBtn').addEventListener('click', () => {
         flipFlashcard();
     });
@@ -646,7 +684,13 @@ function startFlashcards() {
             type: 'character'
         }));
     } else if (flashcardType === 'vocabulary') {
-        flashcardData = vocabularyData.map(item => ({
+        // Filter vocabulary by level
+        let filteredVocab = vocabularyData;
+        if (flashcardLevel !== 'all') {
+            filteredVocab = vocabularyData.filter(item => item.level === flashcardLevel);
+        }
+        
+        flashcardData = filteredVocab.map(item => ({
             front: item.japanese,
             back: item.english,
             extra: item.romaji,
@@ -663,7 +707,14 @@ function startFlashcards() {
             back: item.romaji,
             type: 'character'
         }));
-        const vocabCards = vocabularyData.map(item => ({
+        
+        // Filter vocabulary by level
+        let filteredVocab = vocabularyData;
+        if (flashcardLevel !== 'all') {
+            filteredVocab = vocabularyData.filter(item => item.level === flashcardLevel);
+        }
+        
+        const vocabCards = filteredVocab.map(item => ({
             front: item.japanese,
             back: item.english,
             extra: item.romaji,
