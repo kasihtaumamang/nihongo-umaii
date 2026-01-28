@@ -486,8 +486,8 @@ function startQuiz() {
     } else if (quizType === 'vocabulary') {
         quizData = generateVocabularyQuiz();
     } else if (quizType === 'mixed') {
-        const hiraQuiz = generateCharacterQuiz(hiraganaData.slice(0, 3));
-        const kataQuiz = generateCharacterQuiz(katakanaData.slice(0, 3));
+        const hiraQuiz = generateCharacterQuiz(hiraganaData, 3);
+        const kataQuiz = generateCharacterQuiz(katakanaData, 3);
         const vocabQuiz = generateVocabularyQuiz(4);
         quizData = [...hiraQuiz, ...kataQuiz, ...vocabQuiz];
         shuffleArray(quizData);
