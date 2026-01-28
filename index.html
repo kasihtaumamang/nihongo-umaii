@@ -142,17 +142,31 @@
                 <h2 class="section-title">Japanese Vocabulary</h2>
                 <p class="section-description">Build your vocabulary with common Japanese words and phrases!</p>
                 
-                <div class="vocab-categories">
-                    <button class="btn btn-outline category-btn active" data-category="all">All</button>
-                    <button class="btn btn-outline category-btn" data-category="greetings">Greetings</button>
-                    <button class="btn btn-outline category-btn" data-category="numbers">Numbers</button>
-                    <button class="btn btn-outline category-btn" data-category="colors">Colors</button>
-                    <button class="btn btn-outline category-btn" data-category="family">Family</button>
-                    <button class="btn btn-outline category-btn" data-category="food">Food</button>
+                <div class="vocab-filters">
+                    <div class="vocab-categories">
+                        <h3>Category:</h3>
+                        <button class="btn btn-outline category-btn active" data-category="all">All</button>
+                        <button class="btn btn-outline category-btn" data-category="greetings">Greetings</button>
+                        <button class="btn btn-outline category-btn" data-category="numbers">Numbers</button>
+                        <button class="btn btn-outline category-btn" data-category="colors">Colors</button>
+                        <button class="btn btn-outline category-btn" data-category="family">Family</button>
+                        <button class="btn btn-outline category-btn" data-category="food">Food</button>
+                    </div>
+                    
+                    <div class="vocab-levels">
+                        <h3>JLPT Level:</h3>
+                        <button class="btn btn-outline level-btn active" data-level="all">All Levels</button>
+                        <button class="btn btn-outline level-btn" data-level="N5">N5</button>
+                        <button class="btn btn-outline level-btn" data-level="N4">N4</button>
+                        <button class="btn btn-outline level-btn" data-level="N3">N3</button>
+                    </div>
                 </div>
 
                 <div id="vocabularyContent" class="vocab-grid">
                     <!-- Vocabulary cards will be loaded by JavaScript -->
+                </div>
+                <div id="noVocabMessage" class="no-results-message" style="display: none;">
+                    <p>No vocabulary found for the selected filters. Try selecting different options.</p>
                 </div>
             </div>
         </section>
@@ -170,6 +184,15 @@
                         <button class="btn btn-primary flashcard-type-btn" data-type="katakana">Katakana Flashcards</button>
                         <button class="btn btn-primary flashcard-type-btn" data-type="vocabulary">Vocabulary Flashcards</button>
                         <button class="btn btn-primary flashcard-type-btn" data-type="all">All Mixed</button>
+                    </div>
+                    <div class="flashcard-level-selection">
+                        <h3>Select JLPT Level (for Vocabulary):</h3>
+                        <div class="level-buttons">
+                            <button class="btn btn-outline flashcard-level-btn active" data-level="all">All Levels</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N5">N5</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N4">N4</button>
+                            <button class="btn btn-outline flashcard-level-btn" data-level="N3">N3</button>
+                        </div>
                     </div>
                 </div>
 
@@ -218,6 +241,70 @@
                         <button class="btn btn-primary quiz-type-btn" data-type="katakana">Katakana Quiz</button>
                         <button class="btn btn-primary quiz-type-btn" data-type="vocabulary">Vocabulary Quiz</button>
                         <button class="btn btn-primary quiz-type-btn" data-type="mixed">Mixed Quiz</button>
+                        <button class="btn btn-primary quiz-type-btn" data-type="custom">Custom Quiz</button>
+                    </div>
+                    <div class="quiz-level-selection">
+                        <h3>Select JLPT Level:</h3>
+                        <div class="level-buttons">
+                            <button class="btn btn-outline quiz-level-btn active" data-level="all">All Levels</button>
+                            <button class="btn btn-outline quiz-level-btn" data-level="N5">N5 (Beginner)</button>
+                            <button class="btn btn-outline quiz-level-btn" data-level="N4">N4</button>
+                            <button class="btn btn-outline quiz-level-btn" data-level="N3">N3</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Quiz Management -->
+                    <div class="custom-quiz-section">
+                        <h3>Create Your Own Questions:</h3>
+                        <div class="custom-quiz-buttons">
+                            <button class="btn btn-secondary" id="showCustomQuizCreator">➕ Add New Question</button>
+                            <button class="btn btn-secondary" id="showCustomQuizManager">📝 Manage Questions</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Custom Question Creator -->
+                    <div id="customQuizCreator" class="custom-quiz-creator" style="display: none;">
+                        <h3>Create New Question</h3>
+                        <form id="customQuestionForm">
+                            <div class="form-group">
+                                <label for="customQuestion">Question:</label>
+                                <input type="text" id="customQuestion" class="form-input" placeholder="Enter your question" maxlength="200" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Answer Options:</label>
+                                <div class="option-group">
+                                    <input type="radio" name="correctAnswer" value="0" id="correct0" required>
+                                    <input type="text" id="customOption1" class="form-input" placeholder="Option 1" maxlength="100" required>
+                                </div>
+                                <div class="option-group">
+                                    <input type="radio" name="correctAnswer" value="1" id="correct1" required>
+                                    <input type="text" id="customOption2" class="form-input" placeholder="Option 2" maxlength="100" required>
+                                </div>
+                                <div class="option-group">
+                                    <input type="radio" name="correctAnswer" value="2" id="correct2" required>
+                                    <input type="text" id="customOption3" class="form-input" placeholder="Option 3" maxlength="100" required>
+                                </div>
+                                <div class="option-group">
+                                    <input type="radio" name="correctAnswer" value="3" id="correct3" required>
+                                    <input type="text" id="customOption4" class="form-input" placeholder="Option 4" maxlength="100" required>
+                                </div>
+                                <p class="form-hint">Select the radio button next to the correct answer</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="customCategory">Category (optional):</label>
+                                <input type="text" id="customCategory" class="form-input" placeholder="e.g., Grammar, Kanji, etc." maxlength="50">
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Add Question</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Custom Questions Manager -->
+                    <div id="customQuizManager" class="custom-quiz-manager" style="display: none;">
+                        <h3>Your Custom Questions</h3>
+                        <div id="customQuestionsList"></div>
                     </div>
                 </div>
 

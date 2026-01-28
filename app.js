@@ -27,58 +27,58 @@ const katakanaData = [
 
 const vocabularyData = [
     // Greetings
-    { japanese: 'こんにちは', romaji: 'konnichiwa', english: 'Hello', category: 'greetings' },
-    { japanese: 'おはよう', romaji: 'ohayou', english: 'Good morning', category: 'greetings' },
-    { japanese: 'こんばんは', romaji: 'konbanwa', english: 'Good evening', category: 'greetings' },
-    { japanese: 'さようなら', romaji: 'sayounara', english: 'Goodbye', category: 'greetings' },
-    { japanese: 'ありがとう', romaji: 'arigatou', english: 'Thank you', category: 'greetings' },
-    { japanese: 'すみません', romaji: 'sumimasen', english: 'Excuse me', category: 'greetings' },
-    { japanese: 'ごめんなさい', romaji: 'gomennasai', english: 'I\'m sorry', category: 'greetings' },
-    { japanese: 'おやすみなさい', romaji: 'oyasuminasai', english: 'Good night', category: 'greetings' },
+    { japanese: 'こんにちは', romaji: 'konnichiwa', english: 'Hello', category: 'greetings', level: 'N5' },
+    { japanese: 'おはよう', romaji: 'ohayou', english: 'Good morning', category: 'greetings', level: 'N5' },
+    { japanese: 'こんばんは', romaji: 'konbanwa', english: 'Good evening', category: 'greetings', level: 'N5' },
+    { japanese: 'さようなら', romaji: 'sayounara', english: 'Goodbye', category: 'greetings', level: 'N5' },
+    { japanese: 'ありがとう', romaji: 'arigatou', english: 'Thank you', category: 'greetings', level: 'N5' },
+    { japanese: 'すみません', romaji: 'sumimasen', english: 'Excuse me', category: 'greetings', level: 'N5' },
+    { japanese: 'ごめんなさい', romaji: 'gomennasai', english: 'I\'m sorry', category: 'greetings', level: 'N4' },
+    { japanese: 'おやすみなさい', romaji: 'oyasuminasai', english: 'Good night', category: 'greetings', level: 'N5' },
     
     // Numbers
-    { japanese: '一', romaji: 'ichi', english: 'One', category: 'numbers' },
-    { japanese: '二', romaji: 'ni', english: 'Two', category: 'numbers' },
-    { japanese: '三', romaji: 'san', english: 'Three', category: 'numbers' },
-    { japanese: '四', romaji: 'shi/yon', english: 'Four', category: 'numbers' },
-    { japanese: '五', romaji: 'go', english: 'Five', category: 'numbers' },
-    { japanese: '六', romaji: 'roku', english: 'Six', category: 'numbers' },
-    { japanese: '七', romaji: 'shichi/nana', english: 'Seven', category: 'numbers' },
-    { japanese: '八', romaji: 'hachi', english: 'Eight', category: 'numbers' },
-    { japanese: '九', romaji: 'kyuu/ku', english: 'Nine', category: 'numbers' },
-    { japanese: '十', romaji: 'juu', english: 'Ten', category: 'numbers' },
+    { japanese: '一', romaji: 'ichi', english: 'One', category: 'numbers', level: 'N5' },
+    { japanese: '二', romaji: 'ni', english: 'Two', category: 'numbers', level: 'N5' },
+    { japanese: '三', romaji: 'san', english: 'Three', category: 'numbers', level: 'N5' },
+    { japanese: '四', romaji: 'shi/yon', english: 'Four', category: 'numbers', level: 'N5' },
+    { japanese: '五', romaji: 'go', english: 'Five', category: 'numbers', level: 'N5' },
+    { japanese: '六', romaji: 'roku', english: 'Six', category: 'numbers', level: 'N5' },
+    { japanese: '七', romaji: 'shichi/nana', english: 'Seven', category: 'numbers', level: 'N5' },
+    { japanese: '八', romaji: 'hachi', english: 'Eight', category: 'numbers', level: 'N5' },
+    { japanese: '九', romaji: 'kyuu/ku', english: 'Nine', category: 'numbers', level: 'N5' },
+    { japanese: '十', romaji: 'juu', english: 'Ten', category: 'numbers', level: 'N5' },
     
     // Colors
-    { japanese: '赤', romaji: 'aka', english: 'Red', category: 'colors' },
-    { japanese: '青', romaji: 'ao', english: 'Blue', category: 'colors' },
-    { japanese: '黄色', romaji: 'kiiro', english: 'Yellow', category: 'colors' },
-    { japanese: '緑', romaji: 'midori', english: 'Green', category: 'colors' },
-    { japanese: '白', romaji: 'shiro', english: 'White', category: 'colors' },
-    { japanese: '黒', romaji: 'kuro', english: 'Black', category: 'colors' },
-    { japanese: 'ピンク', romaji: 'pinku', english: 'Pink', category: 'colors' },
-    { japanese: 'オレンジ', romaji: 'orenji', english: 'Orange', category: 'colors' },
+    { japanese: '赤', romaji: 'aka', english: 'Red', category: 'colors', level: 'N5' },
+    { japanese: '青', romaji: 'ao', english: 'Blue', category: 'colors', level: 'N5' },
+    { japanese: '黄色', romaji: 'kiiro', english: 'Yellow', category: 'colors', level: 'N4' },
+    { japanese: '緑', romaji: 'midori', english: 'Green', category: 'colors', level: 'N4' },
+    { japanese: '白', romaji: 'shiro', english: 'White', category: 'colors', level: 'N5' },
+    { japanese: '黒', romaji: 'kuro', english: 'Black', category: 'colors', level: 'N5' },
+    { japanese: 'ピンク', romaji: 'pinku', english: 'Pink', category: 'colors', level: 'N4' },
+    { japanese: 'オレンジ', romaji: 'orenji', english: 'Orange', category: 'colors', level: 'N4' },
     
     // Family
-    { japanese: '父', romaji: 'chichi', english: 'Father', category: 'family' },
-    { japanese: '母', romaji: 'haha', english: 'Mother', category: 'family' },
-    { japanese: '兄', romaji: 'ani', english: 'Older brother', category: 'family' },
-    { japanese: '姉', romaji: 'ane', english: 'Older sister', category: 'family' },
-    { japanese: '弟', romaji: 'otouto', english: 'Younger brother', category: 'family' },
-    { japanese: '妹', romaji: 'imouto', english: 'Younger sister', category: 'family' },
-    { japanese: '祖父', romaji: 'sofu', english: 'Grandfather', category: 'family' },
-    { japanese: '祖母', romaji: 'sobo', english: 'Grandmother', category: 'family' },
+    { japanese: '父', romaji: 'chichi', english: 'Father', category: 'family', level: 'N5' },
+    { japanese: '母', romaji: 'haha', english: 'Mother', category: 'family', level: 'N5' },
+    { japanese: '兄', romaji: 'ani', english: 'Older brother', category: 'family', level: 'N4' },
+    { japanese: '姉', romaji: 'ane', english: 'Older sister', category: 'family', level: 'N4' },
+    { japanese: '弟', romaji: 'otouto', english: 'Younger brother', category: 'family', level: 'N4' },
+    { japanese: '妹', romaji: 'imouto', english: 'Younger sister', category: 'family', level: 'N4' },
+    { japanese: '祖父', romaji: 'sofu', english: 'Grandfather', category: 'family', level: 'N3' },
+    { japanese: '祖母', romaji: 'sobo', english: 'Grandmother', category: 'family', level: 'N3' },
     
     // Food
-    { japanese: 'ご飯', romaji: 'gohan', english: 'Rice/Meal', category: 'food' },
-    { japanese: '水', romaji: 'mizu', english: 'Water', category: 'food' },
-    { japanese: 'パン', romaji: 'pan', english: 'Bread', category: 'food' },
-    { japanese: '魚', romaji: 'sakana', english: 'Fish', category: 'food' },
-    { japanese: '肉', romaji: 'niku', english: 'Meat', category: 'food' },
-    { japanese: '野菜', romaji: 'yasai', english: 'Vegetables', category: 'food' },
-    { japanese: '果物', romaji: 'kudamono', english: 'Fruit', category: 'food' },
-    { japanese: 'お茶', romaji: 'ocha', english: 'Tea', category: 'food' },
-    { japanese: 'コーヒー', romaji: 'koohii', english: 'Coffee', category: 'food' },
-    { japanese: '寿司', romaji: 'sushi', english: 'Sushi', category: 'food' }
+    { japanese: 'ご飯', romaji: 'gohan', english: 'Rice/Meal', category: 'food', level: 'N5' },
+    { japanese: '水', romaji: 'mizu', english: 'Water', category: 'food', level: 'N5' },
+    { japanese: 'パン', romaji: 'pan', english: 'Bread', category: 'food', level: 'N5' },
+    { japanese: '魚', romaji: 'sakana', english: 'Fish', category: 'food', level: 'N5' },
+    { japanese: '肉', romaji: 'niku', english: 'Meat', category: 'food', level: 'N5' },
+    { japanese: '野菜', romaji: 'yasai', english: 'Vegetables', category: 'food', level: 'N4' },
+    { japanese: '果物', romaji: 'kudamono', english: 'Fruit', category: 'food', level: 'N4' },
+    { japanese: 'お茶', romaji: 'ocha', english: 'Tea', category: 'food', level: 'N5' },
+    { japanese: 'コーヒー', romaji: 'koohii', english: 'Coffee', category: 'food', level: 'N5' },
+    { japanese: '寿司', romaji: 'sushi', english: 'Sushi', category: 'food', level: 'N5' }
 ];
 
 // State Management
@@ -90,9 +90,15 @@ let quizData = [];
 let currentQuizIndex = 0;
 let quizScore = 0;
 let quizType = '';
+let quizLevel = 'all';
+let vocabularyLevel = 'all';
+let vocabularyCategory = 'all';
 let flashcardData = [];
 let currentFlashcardIndex = 0;
 let flashcardType = '';
+let flashcardLevel = 'all';
+let customQuestions = [];
+let editingQuestionId = null;
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -107,6 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initPracticeMode();
     initQuiz();
     initFlashcards();
+    initCustomQuiz();
+    loadCustomQuestions();
 });
 
 // Navigation
@@ -341,30 +349,66 @@ function checkPracticeAnswer(type) {
 }
 
 // Vocabulary
-function loadVocabulary(category = 'all') {
+// Helper function to filter vocabulary by level
+function filterVocabularyByLevel(vocabData, level) {
+    if (level === 'all') {
+        return vocabData;
+    }
+    return vocabData.filter(item => item.level === level);
+}
+
+function loadVocabulary(category = null, level = null) {
+    // Use stored values if not provided
+    if (category !== null) vocabularyCategory = category;
+    if (level !== null) vocabularyLevel = level;
+    
     const container = document.getElementById('vocabularyContent');
+    const messageEl = document.getElementById('noVocabMessage');
     container.innerHTML = '';
     
-    const filteredVocab = category === 'all' 
-        ? vocabularyData 
-        : vocabularyData.filter(item => item.category === category);
+    // Filter by both category and level
+    let filteredVocab = vocabularyData;
     
-    filteredVocab.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'vocab-card';
-        card.innerHTML = `
-            <div class="vocab-japanese">${item.japanese}</div>
-            <div class="vocab-romaji">${item.romaji}</div>
-            <div class="vocab-english">${item.english}</div>
-            <div class="vocab-category">${item.category}</div>
-        `;
-        container.appendChild(card);
-    });
+    if (vocabularyCategory !== 'all') {
+        filteredVocab = filteredVocab.filter(item => item.category === vocabularyCategory);
+    }
+    
+    filteredVocab = filterVocabularyByLevel(filteredVocab, vocabularyLevel);
+    
+    // Show message if no results
+    if (filteredVocab.length === 0) {
+        container.style.display = 'none';
+        messageEl.style.display = 'block';
+    } else {
+        container.style.display = 'grid';
+        messageEl.style.display = 'none';
+        
+        filteredVocab.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'vocab-card';
+            card.innerHTML = `
+                <div class="vocab-japanese">${item.japanese}</div>
+                <div class="vocab-romaji">${item.romaji}</div>
+                <div class="vocab-english">${item.english}</div>
+                <div class="vocab-category">${item.category}</div>
+                <div class="vocab-level">${item.level}</div>
+            `;
+            container.appendChild(card);
+        });
+    }
     
     // Update category buttons
     document.querySelectorAll('.category-btn').forEach(btn => {
         btn.classList.remove('active');
-        if (btn.dataset.category === category) {
+        if (btn.dataset.category === vocabularyCategory) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update level buttons
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.level === vocabularyLevel) {
             btn.classList.add('active');
         }
     });
@@ -374,7 +418,13 @@ function loadVocabulary(category = 'all') {
 function initCategoryButtons() {
     document.querySelectorAll('.category-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-            loadVocabulary(btn.dataset.category);
+            loadVocabulary(btn.dataset.category, null);
+        });
+    });
+    
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            loadVocabulary(null, btn.dataset.level);
         });
     });
 }
@@ -385,6 +435,15 @@ function initQuiz() {
         btn.addEventListener('click', () => {
             quizType = btn.dataset.type;
             startQuiz();
+        });
+    });
+    
+    document.querySelectorAll('.quiz-level-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            quizLevel = btn.dataset.level;
+            // Update active state
+            document.querySelectorAll('.quiz-level-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
         });
     });
     
@@ -414,6 +473,11 @@ function startQuiz() {
         const vocabQuiz = generateVocabularyQuiz(4);
         quizData = [...hiraQuiz, ...kataQuiz, ...vocabQuiz];
         shuffleArray(quizData);
+    } else if (quizType === 'custom') {
+        quizData = generateCustomQuiz();
+        if (quizData.length === 0) {
+            return; // Alert already shown in generateCustomQuiz
+        }
     }
     
     document.getElementById('quizStart').style.display = 'none';
@@ -453,15 +517,25 @@ function generateCharacterQuiz(data, count = 10) {
 
 function generateVocabularyQuiz(count = 10) {
     const questions = [];
-    const shuffled = [...vocabularyData].sort(() => Math.random() - 0.5);
+    
+    // Filter vocabulary by level
+    const filteredVocab = filterVocabularyByLevel(vocabularyData, quizLevel);
+    
+    // If not enough items, notify and use all
+    if (filteredVocab.length < 4) {
+        console.warn(`Not enough vocabulary for level ${quizLevel}, using all levels`);
+        return generateVocabularyQuiz(count); // Will use 'all' next time
+    }
+    
+    const shuffled = [...filteredVocab].sort(() => Math.random() - 0.5);
     
     for (let i = 0; i < Math.min(count, shuffled.length); i++) {
         const correct = shuffled[i];
         const options = [correct.english];
         
-        // Add 3 random wrong answers
+        // Add 3 random wrong answers from the same filtered set
         while (options.length < 4) {
-            const random = vocabularyData[Math.floor(Math.random() * vocabularyData.length)];
+            const random = filteredVocab[Math.floor(Math.random() * filteredVocab.length)];
             if (!options.includes(random.english)) {
                 options.push(random.english);
             }
@@ -573,6 +647,15 @@ function initFlashcards() {
         });
     });
     
+    document.querySelectorAll('.flashcard-level-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            flashcardLevel = btn.dataset.level;
+            // Update active state
+            document.querySelectorAll('.flashcard-level-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+    
     document.getElementById('flashcardFlipBtn').addEventListener('click', () => {
         flipFlashcard();
     });
@@ -624,7 +707,10 @@ function startFlashcards() {
             type: 'character'
         }));
     } else if (flashcardType === 'vocabulary') {
-        flashcardData = vocabularyData.map(item => ({
+        // Filter vocabulary by level using helper function
+        const filteredVocab = filterVocabularyByLevel(vocabularyData, flashcardLevel);
+        
+        flashcardData = filteredVocab.map(item => ({
             front: item.japanese,
             back: item.english,
             extra: item.romaji,
@@ -641,7 +727,11 @@ function startFlashcards() {
             back: item.romaji,
             type: 'character'
         }));
-        const vocabCards = vocabularyData.map(item => ({
+        
+        // Filter vocabulary by level using helper function
+        const filteredVocab = filterVocabularyByLevel(vocabularyData, flashcardLevel);
+        
+        const vocabCards = filteredVocab.map(item => ({
             front: item.japanese,
             back: item.english,
             extra: item.romaji,
@@ -738,4 +828,239 @@ function updateStats() {
     
     const bestScore = localStorage.getItem('bestQuizScore') || 0;
     document.getElementById('quizScore').textContent = bestScore + '%';
+}
+
+// Custom Quiz Functions
+function loadCustomQuestions() {
+    try {
+        const saved = localStorage.getItem('customQuestions');
+        if (saved) {
+            customQuestions = JSON.parse(saved);
+        }
+    } catch (error) {
+        console.error('Error loading custom questions:', error);
+        alert('Unable to load custom questions. Please check your browser settings.');
+        customQuestions = [];
+    }
+    updateCustomQuestionsList();
+}
+
+function saveCustomQuestions() {
+    try {
+        localStorage.setItem('customQuestions', JSON.stringify(customQuestions));
+        updateCustomQuestionsList();
+    } catch (error) {
+        console.error('Error saving custom questions:', error);
+        if (error.name === 'QuotaExceededError') {
+            alert('Storage limit exceeded. Please delete some questions.');
+        } else {
+            alert('Unable to save questions. Please check your browser settings.');
+        }
+    }
+}
+
+function initCustomQuiz() {
+    // Show/hide custom quiz creator
+    const createBtn = document.getElementById('showCustomQuizCreator');
+    const manageBtn = document.getElementById('showCustomQuizManager');
+    const creatorSection = document.getElementById('customQuizCreator');
+    const managerSection = document.getElementById('customQuizManager');
+    
+    if (createBtn) {
+        createBtn.addEventListener('click', () => {
+            creatorSection.style.display = creatorSection.style.display === 'none' ? 'block' : 'none';
+            managerSection.style.display = 'none';
+        });
+    }
+    
+    if (manageBtn) {
+        manageBtn.addEventListener('click', () => {
+            managerSection.style.display = managerSection.style.display === 'none' ? 'block' : 'none';
+            creatorSection.style.display = 'none';
+            updateCustomQuestionsList();
+        });
+    }
+    
+    // Add custom question form submission
+    const form = document.getElementById('customQuestionForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            addCustomQuestion();
+        });
+    }
+}
+
+function addCustomQuestion() {
+    const question = document.getElementById('customQuestion').value.trim();
+    const option1 = document.getElementById('customOption1').value.trim();
+    const option2 = document.getElementById('customOption2').value.trim();
+    const option3 = document.getElementById('customOption3').value.trim();
+    const option4 = document.getElementById('customOption4').value.trim();
+    const correctAnswer = document.querySelector('input[name="correctAnswer"]:checked');
+    const category = document.getElementById('customCategory').value.trim() || 'Custom';
+    
+    if (!question || !option1 || !option2 || !option3 || !option4 || !correctAnswer) {
+        alert('Please fill in all fields and select the correct answer!');
+        return;
+    }
+    
+    // Validate input lengths
+    if (question.length > 200) {
+        alert('Question text is too long (max 200 characters)');
+        return;
+    }
+    
+    if (category.length > 50) {
+        alert('Category name is too long (max 50 characters)');
+        return;
+    }
+    
+    const options = [option1, option2, option3, option4];
+    
+    // Check for duplicate options
+    const uniqueOptions = new Set(options.map(opt => opt.toLowerCase()));
+    if (uniqueOptions.size < options.length) {
+        alert('All answer options must be unique!');
+        return;
+    }
+    
+    // Validate option lengths
+    for (let opt of options) {
+        if (opt.length > 100) {
+            alert('Answer options are too long (max 100 characters each)');
+            return;
+        }
+    }
+    
+    const correctIndex = parseInt(correctAnswer.value);
+    
+    // If editing, remove the old question first
+    if (editingQuestionId) {
+        customQuestions = customQuestions.filter(q => q.id !== editingQuestionId);
+    }
+    
+    // Generate more robust ID (use existing ID if editing)
+    const newQuestion = {
+        id: editingQuestionId || (Date.now() + '-' + Math.random().toString(36).substr(2, 9)),
+        question: question,
+        options: options,
+        correct: options[correctIndex],
+        category: category
+    };
+    
+    customQuestions.push(newQuestion);
+    saveCustomQuestions();
+    
+    // Clear form and reset edit state
+    document.getElementById('customQuestionForm').reset();
+    editingQuestionId = null;
+    
+    // Reset button text
+    const submitBtn = document.querySelector('#customQuestionForm button[type="submit"]');
+    submitBtn.textContent = 'Add Question';
+    
+    alert(editingQuestionId ? 'Question updated successfully!' : 'Question added successfully!');
+}
+
+function updateCustomQuestionsList() {
+    const list = document.getElementById('customQuestionsList');
+    if (!list) return;
+    
+    list.innerHTML = '';
+    
+    if (customQuestions.length === 0) {
+        list.innerHTML = '<p class="no-questions">No custom questions yet. Create your first question!</p>';
+        return;
+    }
+    
+    customQuestions.forEach((q, index) => {
+        const item = document.createElement('div');
+        item.className = 'custom-question-item';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'question-content';
+        
+        const questionLabel = document.createElement('strong');
+        questionLabel.textContent = `Q${index + 1}: `;
+        
+        const questionText = document.createTextNode(q.question);
+        
+        const categorySpan = document.createElement('span');
+        categorySpan.className = 'question-category';
+        categorySpan.textContent = q.category;
+        
+        contentDiv.appendChild(questionLabel);
+        contentDiv.appendChild(questionText);
+        contentDiv.appendChild(document.createElement('br'));
+        contentDiv.appendChild(categorySpan);
+        
+        const actionsDiv = document.createElement('div');
+        actionsDiv.className = 'question-actions';
+        
+        const editBtn = document.createElement('button');
+        editBtn.className = 'btn btn-outline btn-sm';
+        editBtn.textContent = 'Edit';
+        editBtn.addEventListener('click', () => editCustomQuestion(q.id));
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn btn-outline btn-sm';
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.addEventListener('click', () => deleteCustomQuestion(q.id));
+        
+        actionsDiv.appendChild(editBtn);
+        actionsDiv.appendChild(deleteBtn);
+        
+        item.appendChild(contentDiv);
+        item.appendChild(actionsDiv);
+        list.appendChild(item);
+    });
+}
+
+function deleteCustomQuestion(id) {
+    if (!confirm('Are you sure you want to delete this question?')) return;
+    
+    customQuestions = customQuestions.filter(q => q.id !== id);
+    saveCustomQuestions();
+}
+
+function editCustomQuestion(id) {
+    const question = customQuestions.find(q => q.id === id);
+    if (!question) return;
+    
+    // Store the ID we're editing
+    editingQuestionId = id;
+    
+    // Fill the form with existing data
+    document.getElementById('customQuestion').value = question.question;
+    document.getElementById('customOption1').value = question.options[0];
+    document.getElementById('customOption2').value = question.options[1];
+    document.getElementById('customOption3').value = question.options[2];
+    document.getElementById('customOption4').value = question.options[3];
+    document.getElementById('customCategory').value = question.category;
+    
+    // Check the correct answer radio button
+    const correctIndex = question.options.indexOf(question.correct);
+    document.querySelector(`input[name="correctAnswer"][value="${correctIndex}"]`).checked = true;
+    
+    // Show creator and hide manager
+    document.getElementById('customQuizCreator').style.display = 'block';
+    document.getElementById('customQuizManager').style.display = 'none';
+    
+    // Update button text
+    const submitBtn = document.querySelector('#customQuestionForm button[type="submit"]');
+    submitBtn.textContent = 'Update Question';
+    
+    // Scroll to form
+    document.getElementById('customQuizCreator').scrollIntoView({ behavior: 'smooth' });
+}
+
+function generateCustomQuiz() {
+    if (customQuestions.length < 4) {
+        alert('You need at least 4 custom questions to start a quiz!');
+        return [];
+    }
+    
+    const shuffled = [...customQuestions].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, Math.min(10, shuffled.length));
 }
